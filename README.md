@@ -4,7 +4,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0
 -->
 
 # k8s\_malicious\_kubeconfig
-_TL;DR: PoC demonstrating code execution through a crafted kubeconfig__
+_TL;DR: PoC demonstrating code execution through a crafted kubeconfig_
 
 
 ## Introduction
